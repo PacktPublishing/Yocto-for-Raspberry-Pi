@@ -1,0 +1,10 @@
+{
+  "name": "rpi_web",
+  "version": "0.1.0",
+  "description": "rpi monitoring panel",
+  "main": "server.js",
+  "author": "Pierre-jean TEXIER",
+  "dependencies": {
+   "socket.io": "~0.9.14"
+  }
+}

@@ -1,0 +1,126 @@
+<!--
+    Autor: Pierre-Jean TEXIER
+-->
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>
+		rpi webserver monitor
+	</title>
+	
+	
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!--<script src="http://code.highcharts.com/highcharts.js" type="application/javascript"></script>-->
+    <script src="http://code.highcharts.com/stock/highstock.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="prev" href="./logfile.html">
+    <!-- Optional theme -->
+    <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">-->
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+    <script src="routes/raphael.2.1.0.min.js"></script>
+    <script src="routes/justgage.1.0.1.min.js"></script>
+     <script type="text/javascript" src="routes/jquery.flot.min.js"></script>
+    <script src="routes/canvas.js"></script>
+
+    
+    
+    
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="container-fluid">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+ <ul class="nav navbar-nav">
+    <li class="active"> <a href="index.html">Accueil</a> </li>
+  </ul>
+
+</div>
+
+
+
+</div>
+</div>
+</nav>'
+<hr>
+
+<div class="container-fluid">
+<div class="well well-lg text-center">
+<h1><b>Raspberry-Pi</b><b></b></h1>
+<p><b>Temperature</b> monitor</p>
+<h4><span class="label label-info"></span></h4>
+</div>
+
+
+<center>
+		<div id="Temperature" class="gauge" style="width:300px; height:150px"></div>
+</center>
+
+			
+<script>
+    // Websocket
+    var socket = io.connect('http://'+ location.host);	
+       
+</script>    
+
+<script>
+
+var gg1 = new JustGage({
+    id: "Temperature",
+    value : 0,
+    label : "Temperature",
+    min: 0,
+    max: 100,
+    title: "Rpi Temperature",
+    gaugeWidthScale: 0.6,
+    customSectors: [{
+      color : "#ff0000",
+      lo : 0,
+      hi : 1000
+    },{
+      color : "#00ff00",
+      lo : 1000,
+      hi : 3000
+    }, {
+      color : "#0000ff",
+      lo : 3000,
+      hi : 4095
+    }],
+    counter: true
+  });
+  
+$(document).ready(function(){
+    socket.on('rpi_temperature', function (time, data) {
+      gg1.refresh($.trim(data));
+      return false;
+    });
+  });
+
+</script>
+
+</body>
+<div id="footer">
+  <div class="navbar-inverse navbar-fixed-bottom text-center">
+    <p class="text-muted">Posted by: Pierre-Jean TEXIER <a href="https://www.packtpub.com/application-development/embedded-linux-development-yocto-project">&copy; Packt Publishing - 2015</a></p>
+</div>
+
+</html>

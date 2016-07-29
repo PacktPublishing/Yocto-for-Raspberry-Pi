@@ -1,0 +1,34 @@
+This README file contains information on the contents of the
+packt-qt5 layer.
+
+Thanks to Julien Gueytat <contact@jgueytat.fr> for help with
+pathes to solve qt5 build problems for RPi.
+
+If you encounter build problems with meta-qt5 for raspberrypi,
+add this layer and it will apply some fixes that hopefully will do
+the trick. The layer is tested against:
+
+  Build Configuration:
+  BB_VERSION        = "1.30.0"
+  BUILD_SYS         = "x86_64-linux"
+  NATIVELSBSTRING   = "universal"
+  TARGET_SYS        = "arm-poky-linux-gnueabi"
+  MACHINE           = "raspberrypi2"
+  DISTRO            = "poky"
+  DISTRO_VERSION    = "2.1"
+  TUNE_FEATURES     = "arm armv7ve vfp thumb neon vfpv4 callconvention-hard cortexa7"
+  TARGET_FPU        = "hard"
+  meta              
+  meta-poky         
+  meta-yocto-bsp    = "krogoth:898a78357e72fb80f1f8e26ba90bad5b7b054a4f"
+  meta-raspberrypi  = "master_topic:dc0250876859a61f641748b44c9189fc49cc093f"
+  meta-oe           
+  meta-multimedia   = "krogoth:cb87e40af9abc66ef3c720c863487329a39aa47a"
+  meta-qt5          = "krogoth:d715f2c1d340fa38f8a9860acc73de5e14a38b75"
+  meta-packt-qt5    = "master:00ab0f0687dd86313026db406cff1dcda1333b17"
+
+If the patch '0011-Reorder-EGL-libraries-from-pkgconfig-and-defaults.patch' don't apply it might
+be due to that the patch (or a similar) has reached upstream, in that case just remove the SRC_URI
+entry from qtbase_git.bbappend and try again.
+
+

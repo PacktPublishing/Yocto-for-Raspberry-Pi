@@ -1,0 +1,11 @@
+--- gpio-packt/gpio_example.orig	2015-07-29 11:14:17.657365203 +0200
++++ gpio-packt/gpio_example.c	2015-07-29 11:14:25.477364930 +0200
+@@ -420,7 +420,7 @@
+ 				set_out(GPIO_PIN,atoi(optarg));
+ 				break;
+ 			case 'b':
+-				printf("Button Mode\n");			
++				printf("Button Mode!\n");			
+ 				/** Set gpio4 to in mode */
+ 				set_in(GPIO_PIN);
+ 				wait_bp_state();		

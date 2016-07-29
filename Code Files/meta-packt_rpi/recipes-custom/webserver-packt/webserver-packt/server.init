@@ -1,0 +1,62 @@
+#!/bin/bash                                          
+### BEGIN INIT INFO
+# Provides:          server.init
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:Å    $remote_fs $syslog     
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start daemon at boot time
+# Description:       Enable service provided by daemon.
+### END INIT INFO
+
+DAEMON=node
+NAME=server.init
+DESC="Nodejs app"
+ARGS="/usr/share/server-packt/server/server.js"
+
+set -e
+
+usage()
+{
+        echo "----------------------------------"
+        echo "Usage: $0 (stop|start|restart)"
+        echo "----------------------------------"
+}
+ 
+
+service_start()
+{
+	echo -n "starting $DESC: $NAME... "
+	start-stop-daemon -S -x $DAEMON -- $ARGS &
+	echo "done."
+}
+
+
+echo ""
+ 
+service_stop()
+{
+        echo -n "stopping $DESC: $NAME... "
+	start-stop-daemon -K -x $DAEMON
+	echo "done."
+}
+ 
+case $1 in
+        stop)
+                service_stop
+                echo ""
+        ;;
+        start)
+                service_start
+                echo ""
+        ;;
+        restart)
+                service_stop
+                service_start
+                echo ""
+        ;;
+        *)
+                usage
+esac
+exit 0
+
