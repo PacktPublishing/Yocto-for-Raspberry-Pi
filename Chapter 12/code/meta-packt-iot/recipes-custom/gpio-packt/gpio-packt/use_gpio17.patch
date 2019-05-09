@@ -1,0 +1,11 @@
+--- gpio_example.c.orig	2016-03-10 16:55:04.334832221 +0100
++++ gpio_example.c	2016-03-10 16:54:13.400537071 +0100
+@@ -39,7 +39,7 @@
+ /*=================================================*/
+ #define 	LENGTH		128
+ #define 	SYSFS_GPIO_DIR	"/sys/class/gpio/"
+-#define		GPIO_PIN	4	
++#define		GPIO_PIN	17	
+ #define 	BUFFER_SIZE	255
+ #define		DEBUG		1
+ #define		VERSION		1.00

@@ -1,0 +1,49 @@
+--- gpio_example.c.orig	2016-03-07 11:57:14.519517547 +0100
++++ gpio_example.c	2016-03-07 11:58:46.472351191 +0100
+@@ -39,7 +39,7 @@
+ /*=================================================*/
+ #define 	LENGTH		128
+ #define 	SYSFS_GPIO_DIR	"/sys/class/gpio/"
+-#define		GPIO_PIN	135
++#define		GPIO_PIN	4	
+ #define 	BUFFER_SIZE	255
+ #define		DEBUG		1
+ #define		VERSION		1.00
+@@ -103,14 +103,6 @@
+ 		return ret_val;
+ 	}
+ 
+-#if DEBUG == 1
+-	log_message(LOG_INFO,"Unexport gpio%d\n",GPIO_PIN);
+-#endif
+-	ret_val = unexport(GPIO_PIN);
+-	if (ret_val) {
+-		goto error;
+-	}
+-	
+ 	return 0;
+ 	
+ error:
+@@ -266,6 +258,14 @@
+ 		exit(EXIT_FAILURE);
+ 	}
+ 	fclose(file);
++
++	if (val == 0) {
++#if DEBUG == 1
++		log_message(LOG_INFO,"Unexport gpio%d\n",GPIO_PIN);
++#endif
++		unexport(GPIO_PIN);
++	}
++
+ 	return 0;
+ }
+ 
+@@ -419,6 +419,7 @@
+ 				printf("Set gpio%d to %d\n",GPIO_PIN,atoi(optarg));	
+ 				/** Set gpio4 to out mode */
+ 				set_out(GPIO_PIN,atoi(optarg));
++				setval(GPIO_PIN,atoi(optarg));
+ 				break;
+ 			case 'b':
+ 				printf("Button Mode\n");			
