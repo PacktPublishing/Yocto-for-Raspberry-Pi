@@ -27,3 +27,7 @@ LCONF_VERSION = "6" BBPATH = "${TOPDIR}" BBFILES ?= "" BBLAYERS ?= " \
 * [Learning Raspberry Pi](https://www.packtpub.com/hardware-and-creative/learning-raspberry-pi?utm_source=GitHub&utm_medium=Repo&utm_campaign=9781783982820)
 * [Raspberry Pi for Secret Agents](https://www.packtpub.com/hardware-and-creative/raspberry-pi-secret-agents?utm_source=GitHub&utm_medium=Repo&utm_campaign=9781849695787)
 * [Raspberry Pi Cookbook for Python Programmers](https://www.packtpub.com/hardware-and-creative/raspberry-pi-cookbook-python-programmers?utm_source=GitHub&utm_medium=Repo&utm_campaign=9781849696623)
+### Download a free PDF
+
+ <i>If you have already purchased a print or Kindle version of this book, you can get a DRM-free PDF version at no cost.<br>Simply click on the link to claim your free PDF.</i>
+<p align="center"> <a href="https://packt.link/free-ebook/9781785281952">https://packt.link/free-ebook/9781785281952 </a> </p>
